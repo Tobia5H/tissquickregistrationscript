@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name       TISS Quick Registration Script
+// @name       TISS Quick Registration Script PRO
 // @namespace  http://www.manuelgeier.com/
 // @version    1.6.4
 // @description  Script to help you to get into the group you want. Opens automatically the right panel, registers automatically and confirms your registration automatically. If you don't want the script to do everything automatically, the focus is already set on the right button, so you only need to confirm. There is also an option available to auto refresh the page, if the registration button is not available yet, so you can open the site and watch the script doing its work. You can also set a specific time when the script should reload the page and start.
@@ -699,29 +699,29 @@
     };
   
     self.navigateToSemester = function () {
-      
+
       	var specifiedURL = '';
-      
+
       	if (options.registrationType === "lva") {
             // URL for LVA registration type
-          	specifiedURL = 'https://tiss.tuwien.ac.at/education/course/courseRegistration.xhtml?courseNr=' + options.lvaNumber.replace(/[^\d]/, '') + '&semester=' + options.lvaSemester;
+            specifiedURL = 'https://tiss.tuwien.ac.at/education/course/courseRegistration.xhtml?semester=' + options.lvaSemester + '&courseNr=' + options.lvaNumber.replace(/[^\d]/, '');
             console.log("Registration type is LVA");
         } else if (options.registrationType === "group") {
             // URL for group registration type
-          	specifiedURL = 'https://tiss.tuwien.ac.at/education/course/groupList.xhtml?courseNr=' + options.lvaNumber.replace(/[^\d]/, '') + '&semester=' + options.lvaSemester;
+            specifiedURL = 'https://tiss.tuwien.ac.at/education/course/groupList.xhtml?semester=' + options.lvaSemester + '&courseNr=' + options.lvaNumber.replace(/[^\d]/, '');
             console.log("Registration type is Group");
         } else if (options.registrationType === "exam") {
             // URL for exam registration type
-          	specifiedURL = 'https://tiss.tuwien.ac.at/education/course/examDateList.xhtml?courseNr=' + options.lvaNumber.replace(/[^\d]/, '') + '&semester=' + options.lvaSemester;
+            specifiedURL = 'https://tiss.tuwien.ac.at/education/course/examDateList.xhtml?semester=' + options.lvaSemester + '&courseNr=' + options.lvaNumber.replace(/[^\d]/, '');
             console.log("Registration type is Exam");
         } else {
             // URL for other or unknown registration types
             // default to LVA main page
-          	specifiedURL = 'https://tiss.tuwien.ac.at/course/educationDetails.xhtml?courseNr=' + options.lvaNumber.replace(/[^\d]/, '');
-            console.log("Unknown registration type"); 
+            specifiedURL = 'https://tiss.tuwien.ac.at/course/educationDetails.xhtml?courseNr=' + options.lvaNumber.replace(/[^\d]/, '');
+            console.log("Unknown registration type");
         }
 
-      
+
         // Get the current URL's search parameters
         var urlSearchParams = new URLSearchParams(window.location.search);
 
